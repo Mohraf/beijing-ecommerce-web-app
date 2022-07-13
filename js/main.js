@@ -59,6 +59,17 @@ function ready(){
             updatetotal();
         })
     }
+
+    // Buy button work
+    document.getElementsByClassName('btn-buy')[0].addEventListener('click', () => {
+        alert('Your Order is placed')
+        let cartContent = document.getElementsByClassName('cart-content')[0]
+        while (cartContent.hasChildNodes()) {
+            cartContent.removeChild(cartContent.firstChild)
+        }
+        updatetotal()
+    })
+
 }
 
 // Add Product To Cart
@@ -116,10 +127,9 @@ const updatetotal = () => {
         let price = parseFloat(priceElement.innerText.replace("KES", ""));
         let quantity = quantityElement.value;
         total = total + (price * quantity);
-
-        // If Price contain some cents value
-        total = Math.round(total * 100) / 100;
-
-        document.getElementsByClassName('total-price')[0].innerText = 'KES' + total;
     }
+    // If Price contain some cents value
+    total = Math.round(total * 100) / 100;
+
+    document.getElementsByClassName('total-price')[0].innerText = 'KES' + total;
 }
